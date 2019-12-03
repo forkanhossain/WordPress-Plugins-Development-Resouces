@@ -1,0 +1,30 @@
+//register activation hook
+
+<?php register_activation_hook( $file, $function ); ?>
+
+Or
+function myplugin_activate() {
+
+    // Activation code here...
+}
+register_activation_hook( __FILE__, 'myplugin_activate' );
+
+Or
+//If your plugin uses the singleton class pattern, add the activation hook like so:
+class MyPlugin {
+     static function install() {
+            // do not generate any output here
+     }
+}
+register_activation_hook( __FILE__, array( 'MyPlugin', 'install' ) );
+
+Or 
+register_activation_hook( __FILE__, array( 'MyPlugin', 'YOUR_METHOD_NAME' ) );
+
+
+
+
+//register deactivation hook
+<?php register_deactivation_hook($file, $function); ?>
+
+register_deactivation_hook( __FILE__, 'myplugin_deactivate' );
