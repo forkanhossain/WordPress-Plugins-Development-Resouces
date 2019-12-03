@@ -1,0 +1,2 @@
+//Consider blocking direct access to your plugin PHP files by adding the following line at the top of each of them
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
