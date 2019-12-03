@@ -1,0 +1,45 @@
+If your plugin includes JavaScript files, CSS files or other external files, then it's likely you'll need the URL to these files
+
+plugins_url( 'myscript.js', __FILE__ );
+
+This will return the full URL to myscript.js, such as example.com/wp-content/plugins/myplugin/myscript.j
+
+To load your plugins' JavaScript or CSS into the page you should use
+wp_enqueue_script() or wp_enqueue_style() respectively, passing the result of plugins_url() as the file URL.
+
+Available Functions
+
+Plugins
+plugins_url()
+plugin_dir_url()
+plugin_dir_path()
+plugin_basename()
+
+Themes
+get_template_directory_uri()
+get_stylesheet_directory_uri()
+get_stylesheet_uri()
+get_theme_root_uri()
+get_theme_root()
+get_theme_roots()
+get_stylesheet_directory()
+get_template_directory()
+
+Site Home
+home_url()
+get_home_path()
+
+WordPress
+admin_url()
+site_url()
+content_url()
+includes_url()
+wp_upload_dir()
+
+Multisite
+get_admin_url()
+get_home_url()
+get_site_url()
+network_admin_url()
+network_site_url()
+network_home_url()
