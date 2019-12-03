@@ -1,0 +1,34 @@
+The basic steps to add your own filters to WordPress (described in more detail below) are:
+
+*Create the PHP function that filters the data.
+*Hook to the filter in WordPress, by calling add_filter().
+*Put your PHP function in a plugin file, and activate it.
+
+
+Create a Filter Function
+
+function filter_profanity( $content ) {
+	$profanities = array('badword','alsobad','...');
+	$content = str_ireplace( $profanities, '{censored}', $content );
+	return $content;
+}
+
+Hook in your Filter
+
+add_filter ( 'hook_name', 'your_filter', [priority], [accepted_args] );
+
+add_filter( 'bloginfo', 'mybloginfo', 1, 2 );
+add_filter( 'bloginfo_url', 'mybloginfo', 1, 2 );
+
+function mybloginfo( $result='', $show='' ) {
+	switch ( $show ) {
+		case 'wpurl':
+			$result = SITE_URL;
+			break;
+		case 'template_directory':
+			$result = TEMPL_DIR;
+			break;
+		default: 
+	}
+	return $result;
+}
