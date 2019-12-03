@@ -1,0 +1,43 @@
+//Actions
+//Actions usually do one or more of the following:
+//Modify database data.
+//Send an email message.
+//Modify the generated administration screen or front-end page sent to a user browser.
+//Create an Action Function
+
+Hook to WordPress
+add_action ( 'hook_name', 'your_function_name', [priority], [accepted_args] );
+
+
+function email_friends($post_ID) {
+    $friends = 'bob@example.org,susie@example.org';
+    mail($friends, "sally's blog updated", 
+      'I just put something on my blog: http://blog.example.com');
+    return $post_ID;
+}
+
+Consider this class, which expands on the examples provided above:
+
+class emailer {
+  static function send($post_ID)  {
+    $friends = 'bob@example.org,susie@example.org';
+    mail($friends,"sally's blog updated",'I just put something on my blog: http://blog.example.com');
+    return $post_ID;
+  }
+}
+
+add_action('publish_post', array('emailer', 'send'));
+
+The above example is for static methods. If you have an instance of a class then that won't work. 
+To call a method of an instance you need to pass the instance as a variable. 
+Consider the above example modified to take this into account:
+
+class emailer {
+  function send($post_ID)  {
+    $friends = 'ToT@example.org,alles@example.org';
+    mail($friends,"sally's blog updated",'I just put something on my blog: http://blog.example.com');
+    return $post_ID;
+  }
+}
+$myEmailClass = new emailer();
+add_action('publish_post', array($myEmailClass, 'send'));
