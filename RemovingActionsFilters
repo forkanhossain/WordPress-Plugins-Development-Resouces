@@ -1,0 +1,4 @@
+remove_filter('filter_hook','filter_function') 
+remove_action('action_hook','action_function').
+
+For example, remove_action('publish_post','generic_ping'); would prevent your weblog from sending pings whenever a new post is created.
